@@ -53,7 +53,9 @@
   <ItemGroup>
     <Compile Include="CLI\CommandLineOptions.cs" />
     <Compile Include="CLI\Program.cs" />
+    <Compile Include="Customer\Adapter.cs" />
     <Compile Include="Location\Location.cs" />
+    <Compile Include="Order\Adapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -78,10 +80,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Customer\" />
-    <Folder Include="Order\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

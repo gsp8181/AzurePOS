@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CommandLine;
 using CommandLine.Text;
-using AzurePOS.Location;
 
 namespace AzurePOS.CLI
 {
@@ -36,23 +35,31 @@ namespace AzurePOS.CLI
             if (invokedVerb == "list")
             {
                 ListSubOptions commitSubOptions = (ListSubOptions)invokedVerbInstance;
-                if(commitSubOptions.type == database.customer)
+
+                if(commitSubOptions.customer)
                 {
-                    Console.WriteLine("List of customers will go here");
-                } 
-                else if (commitSubOptions.type == database.order)
+                    Console.WriteLine(Customer.Adapter.GetList());
+                } else if (commitSubOptions.order)
                 {
-                    Console.WriteLine("List of orders will go here");
+                    Console.WriteLine(Order.Adapter.GetList());
+                } else
+                {
+                    Console.WriteLine(HelpText.AutoBuild(options, invokedVerb)); //TODO: put this away 
                 }
             
             }
             if (invokedVerb == "register")
             {
                 RegisterSubOptions commitSubOptions = (RegisterSubOptions)invokedVerbInstance;
+                string result = Customer.Adapter.Register(commitSubOptions.name, commitSubOptions.country); //TODO: country necessary or from settings
+                Console.WriteLine(result);
             }
             if (invokedVerb == "order")
             {
                 OrderSubOptions commitSubOptions = (OrderSubOptions)invokedVerbInstance;
+                string result = Order.Adapter.Register(commitSubOptions.customerId, commitSubOptions.sku, commitSubOptions.dateTime, commitSubOptions.price); //TODO: country necessary or from settings
+                Console.WriteLine(result);
+
             }
             if (invokedVerb == "location")
             {
@@ -65,7 +72,7 @@ namespace AzurePOS.CLI
                 {
                     if (String.IsNullOrEmpty(commitSubOptions.city) || String.IsNullOrEmpty(commitSubOptions.country))
                     {
-                        Console.WriteLine(HelpText.AutoBuild(options, invokedVerb));
+                        Console.WriteLine(HelpText.AutoBuild(options, invokedVerb)); //TODO: put this away
                     }
                     else 
                     {

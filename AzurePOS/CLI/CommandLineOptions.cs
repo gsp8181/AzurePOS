@@ -42,7 +42,7 @@ namespace AzurePOS.CLI
         [VerbOption("register", HelpText = "Register a new customer.")]
         public RegisterSubOptions RegisterVerb { get; set; }
 
-        [VerbOption("order", HelpText = "Register a new order.")]
+        [VerbOption("order", HelpText = "Place a new order.")]
         public OrderSubOptions OrderVerb { get; set; }
 
         [VerbOption("location", HelpText = "View (or set) the location of this instance.")]
@@ -58,20 +58,42 @@ namespace AzurePOS.CLI
 
     class ListSubOptions
     {
-        [Option('t', "type", HelpText = "Database to perform operations on (customer/order)", Required=true)]
-        public database type { get; set; }
 
+        public ListSubOptions()
+        {
+
+        }
+
+        [VerbOption("customer", HelpText = "View the customer database")]
+        public bool customer { get; set; }
+
+        [VerbOption("order", HelpText = "View the order database")]
+        public bool order { get; set; }
 
     }
 
     class RegisterSubOptions
     {
-        // Remainder omitted
+        [Option('n',"name", HelpText = "Name of customer", Required=true)]
+        public string name { get; set; }
+
+        [Option('c',"country", HelpText = "Country of customer", Required=true)]
+        public string country { get; set; } //TODO: should this not just be got from Location?
     }
 
     class OrderSubOptions
     {
-        // Remainder omitted 
+        [Option('i',"id", HelpText = "Customer ID", Required = true)]
+        public string customerId { get; set; }
+
+        [Option('s',"SKU", HelpText = "Stock Keeping Unit (SKU) code", Required = true)]
+        public string sku { get; set; }
+
+        [Option('d', "date", HelpText = "Date and Time of the order", Required = true)]
+        public string dateTime { get; set; } 
+
+        [Option('p', "price", HelpText = "Price (omitting currency code)", Required = true)] //TODO: really omit currency code?
+        public decimal price { get; set; }
     }
 
     class LocationSubOptions
@@ -84,12 +106,6 @@ namespace AzurePOS.CLI
 
         [Option('v',"view",HelpText="View the associated city and country of the instance",MutuallyExclusiveSet="get")]
         public bool view { get; set; }
-    }
-
-    enum database
-    {
-        customer,
-        order
     }
 
 }
