@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CommandLine;
+using CommandLine.Text;
+using AzurePOS.Location;
 
-namespace AzurePOS
+namespace AzurePOS.CLI
 {
     static class Program
     {
@@ -36,11 +38,11 @@ namespace AzurePOS
                 ListSubOptions commitSubOptions = (ListSubOptions)invokedVerbInstance;
                 if(commitSubOptions.type == database.customer)
                 {
-
+                    Console.WriteLine("List of customers will go here");
                 } 
                 else if (commitSubOptions.type == database.order)
                 {
-
+                    Console.WriteLine("List of orders will go here");
                 }
             
             }
@@ -55,14 +57,27 @@ namespace AzurePOS
             if (invokedVerb == "location")
             {
                 LocationSubOptions commitSubOptions = (LocationSubOptions)invokedVerbInstance;
+                if (commitSubOptions.view)
+                {
+                    Console.WriteLine(Location.Location.ToString());
+                }
+                else
+                {
+                    if (String.IsNullOrEmpty(commitSubOptions.city) || String.IsNullOrEmpty(commitSubOptions.country))
+                    {
+                        Console.WriteLine(HelpText.AutoBuild(options, invokedVerb));
+                    }
+                    else 
+                    {
+                        Location.Location.City = commitSubOptions.city;
+                        Location.Location.Country = commitSubOptions.country;
+                        Console.WriteLine("New values saved");
+                        Console.WriteLine(Location.Location.ToString());
+                    }
+                }
+                    
+                
             }
-        }
-
-        private static void RunGUI()
-        {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
         }
     }
 }

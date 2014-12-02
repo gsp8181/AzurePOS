@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using CommandLine;
 using CommandLine.Text;
 
-namespace AzurePOS
+namespace AzurePOS.CLI
 {
     class Options
     {
@@ -76,7 +76,14 @@ namespace AzurePOS
 
     class LocationSubOptions
     {
-        // Remainder omitted 
+        [Option("city", HelpText = "Enter a new city", MutuallyExclusiveSet="set")]
+        public string city { get; set; }
+
+        [Option("country", HelpText = "Enter a new country", MutuallyExclusiveSet = "set")]
+        public string country { get; set; }
+
+        [Option('v',"view",HelpText="View the associated city and country of the instance",MutuallyExclusiveSet="get")]
+        public bool view { get; set; }
     }
 
     enum database
