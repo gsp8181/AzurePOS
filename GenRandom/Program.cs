@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GenRandom
 {
@@ -20,15 +15,16 @@ namespace GenRandom
                 string lastName = Names.lastNames[random.Next(Names.lastNames.Length)];
                 string fullName = firstName + " " + lastName;
                 AzurePOS.CLI.Program.Main(new string[] { "register", "-n", fullName }) ;
-                Console.WriteLine(fullName);
-                Console.ReadKey();
             }
             for(int i=0;i<10000;i++)
             {
                 int customerid = 1;
-                string sku = "sku";
+                string sku = "AZP-TEST-" + random.Next(10).ToString() + random.Next(10).ToString() + random.Next(10).ToString() + random.Next(10).ToString();
                 DateTime dt = DateTime.Today;
-                string price = "00.00";
+                dt = dt.AddMinutes(- random.Next(525949)); //525949 is the number of seconds in a year
+                string p1 = random.Next(1000).ToString();
+                string p2 = random.Next(100).ToString("00");
+                string price = p1 + "." + p2;
                 AzurePOS.CLI.Program.Main(new string[] { "order", "-i", customerid.ToString(), "-s", sku, "-d", dt.ToString("dd/MM/yyyy"), "-t", dt.ToString("HH:mm"), "-p", price });
             }
         }

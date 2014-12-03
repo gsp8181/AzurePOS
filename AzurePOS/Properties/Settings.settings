@@ -8,5 +8,19 @@
     <Setting Name="Country" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="StorageConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;DefaultEndpointsProtocol=https;AccountName=gsp8181;AccountKey=7JIBXG9bNZrB6fDYI/afz+z4CVYMNAmltg8sgduXU1x6275W6ItXF+dyCAGZWABrZDToTxdA/EoXsqFZe/d1Pw==&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">DefaultEndpointsProtocol=https;AccountName=gsp8181;AccountKey=7JIBXG9bNZrB6fDYI/afz+z4CVYMNAmltg8sgduXU1x6275W6ItXF+dyCAGZWABrZDToTxdA/EoXsqFZe/d1Pw==</Value>
+    </Setting>
+    <Setting Name="DevStorageConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;UseDevelopmentStorage=true;&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">UseDevelopmentStorage=true;</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

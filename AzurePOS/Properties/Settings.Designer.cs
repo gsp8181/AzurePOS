@@ -46,5 +46,26 @@ namespace AzurePOS.Properties {
                 this["Country"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("DefaultEndpointsProtocol=https;AccountName=gsp8181;AccountKey=7JIBXG9bNZrB6fDYI/a" +
+            "fz+z4CVYMNAmltg8sgduXU1x6275W6ItXF+dyCAGZWABrZDToTxdA/EoXsqFZe/d1Pw==")]
+        public string StorageConnectionString {
+            get {
+                return ((string)(this["StorageConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("UseDevelopmentStorage=true;")]
+        public string DevStorageConnectionString {
+            get {
+                return ((string)(this["DevStorageConnectionString"]));
+            }
+        }
     }
 }
