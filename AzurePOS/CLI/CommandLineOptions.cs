@@ -83,7 +83,7 @@ namespace AzurePOS.CLI
         [Option("city", HelpText = "Enter a new city", MutuallyExclusiveSet="set")]
         public string city { get; set; }
 
-        [Option("country", HelpText = "Enter a new country", MutuallyExclusiveSet = "set")]
+        [Option("country", HelpText = "Enter a new country code (eg GB)", MutuallyExclusiveSet = "set")]
         public string country { get; set; }
 
         [Option('v',"view",HelpText="View the associated city and country of the instance",MutuallyExclusiveSet="get")]

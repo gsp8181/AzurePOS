@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAzure.Storage.Table;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,19 +7,17 @@ using System.Threading.Tasks;
 
 namespace SQLWorker
 {
-
-    public class CustomerObject
+    class Customer : TableEntity
     {
-        public CustomerObject(string name, string country)
+        public Customer(string id, string country)
         {
-            this.name = name;
-            this.country = country;
+            this.RowKey = id;
+            this.PartitionKey = country;
         }
-        public CustomerObject()
+        public Customer()
         {
 
         }
-        public string name;
-        public string country;
+        public string name { get; set; }
     }
 }

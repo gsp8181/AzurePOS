@@ -7,7 +7,7 @@ namespace GenRandom
         static void Main(string[] args)
         {
             Random random = new Random(Guid.NewGuid().GetHashCode());
-            AzurePOS.CLI.Program.Main(new string[] { "location", "--city", "Newcastle upon Tyne", "--country", "United Kingdom" });
+            AzurePOS.CLI.Program.Main(new string[] { "location", "--city", "Newcastle upon Tyne", "--country", "GB" });
             for(int i=0;i<1000;i++)
             {
 
@@ -19,7 +19,7 @@ namespace GenRandom
             for(int i=0;i<10000;i++)
             {
                 int customerid = 1;
-                string sku = "AZP-TEST-" + random.Next(10).ToString() + random.Next(10).ToString() + random.Next(10).ToString() + random.Next(10).ToString();
+                string sku = "AZP-TEST-" + random.Next(10).ToString() + random.Next(10).ToString() + random.Next(10).ToString();// + random.Next(10).ToString();
                 DateTime dt = DateTime.Today;
                 dt = dt.AddMinutes(- random.Next(525949)); //525949 is the number of seconds in a year
                 string p1 = random.Next(1000).ToString();
