@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzurePOS", "AzurePOS\AzurePOS.csproj", "{8D1A7321-CC80-4EE0-BE29-147EC2B51653}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenRandom", "GenRandom\GenRandom.csproj", "{1777FE6B-CDA0-4460-991B-75AF2BA1CDEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8D1A7321-CC80-4EE0-BE29-147EC2B51653}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D1A7321-CC80-4EE0-BE29-147EC2B51653}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D1A7321-CC80-4EE0-BE29-147EC2B51653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1777FE6B-CDA0-4460-991B-75AF2BA1CDEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1777FE6B-CDA0-4460-991B-75AF2BA1CDEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1777FE6B-CDA0-4460-991B-75AF2BA1CDEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1777FE6B-CDA0-4460-991B-75AF2BA1CDEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

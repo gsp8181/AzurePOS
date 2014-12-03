@@ -31,6 +31,11 @@ namespace AzurePOS.Location
             }
         }
 
+        internal static bool IsSet
+        {
+            get { return (City != "" && Country != "");}
+        }
+
         internal static string ToString()
         {
             string output = "";
@@ -38,7 +43,12 @@ namespace AzurePOS.Location
             {
                 output += ("Current Location Information\n");
                 output += (City + ", " + Country);
-            } else
+            } else if (City != "" || Country != "")
+                {
+                    output += ("Current Location Information\n(Partially Set)\n");
+                    output += (City + ", " + Country);
+                }
+                else
             {
                 output += ("No associated location information");
             }

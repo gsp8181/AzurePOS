@@ -56,8 +56,8 @@ namespace AzurePOS.CLI
         [Option('n',"name", HelpText = "Name of customer", Required=true)]
         public string name { get; set; }
 
-        [Option('c',"country", HelpText = "Country of customer", Required=true)]
-        public string country { get; set; } //TODO: should this not just be got from Location?
+        //[Option('c',"country", HelpText = "Country of customer", Required=true)]
+        //public string country { get; set; } //TODO: should this not just be got from Location?
     }
 
     class OrderSubOptions
@@ -68,8 +68,11 @@ namespace AzurePOS.CLI
         [Option('s',"SKU", HelpText = "Stock Keeping Unit (SKU) code", Required = true)]
         public string sku { get; set; }
 
-        [Option('d', "date", HelpText = "Date and Time of the order", Required = true)]
-        public string dateTime { get; set; } 
+        [Option('d', "date", HelpText = "Date and Time of the order (dd/MM/yyyy). A time is also required if date is set")]
+        public string date { get; set; }
+
+        [Option('t', "time", HelpText = "Time of the order (HH:mm)")]
+        public string time { get; set; } 
 
         [Option('p', "price", HelpText = "Price (omitting currency code)", Required = true)] //TODO: really omit currency code?
         public decimal price { get; set; }

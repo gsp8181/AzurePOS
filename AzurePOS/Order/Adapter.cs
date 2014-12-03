@@ -13,7 +13,7 @@ namespace AzurePOS.Order
             return "order list";
         }
 
-        public static string Register(string customerId, string sku, string dateTime, decimal price)
+        public static string Register(string customerId, string sku, DateTime dateTime, decimal price)
         {
             return "made new order!";
         }
