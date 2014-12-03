@@ -11,11 +11,17 @@ namespace GenRandom
     {
         static void Main(string[] args)
         {
+            Random random = new Random(Guid.NewGuid().GetHashCode());
             AzurePOS.CLI.Program.Main(new string[] { "location", "--city", "Newcastle upon Tyne", "--country", "United Kingdom" });
             for(int i=0;i<1000;i++)
             {
-                Console.WriteLine("added " + i);
-                AzurePOS.CLI.Program.Main(new string[] { "register", "-n", "\"Geoffrey Prytherch\"" }) ;
+
+                string firstName = Names.firstNames[random.Next(Names.firstNames.Length)];
+                string lastName = Names.lastNames[random.Next(Names.lastNames.Length)];
+                string fullName = firstName + " " + lastName;
+                AzurePOS.CLI.Program.Main(new string[] { "register", "-n", fullName }) ;
+                Console.WriteLine(fullName);
+                Console.ReadKey();
             }
             for(int i=0;i<10000;i++)
             {
