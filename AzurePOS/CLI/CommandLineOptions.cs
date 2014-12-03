@@ -10,27 +10,6 @@ namespace AzurePOS.CLI
 {
     class Options
     {
-        //[Option('r', "read", Required = true,
-        //  HelpText = "Input file to be processed.")]
-        //public string InputFile { get; set; }
-
-        // omitting long name, default --verbose
-        /*[Option('g', "gui",
-          HelpText = "Displays the GUI associated with the program", MutuallyExclusiveSet = "gui")]
-        public bool gui { get; set; }
-
-        [Option('t', "type", HelpText = "Database to perform operations on (customer/order)")]
-        public Type type { get; set; }
-
-        [ParserState]
-        public IParserState LastParserState { get; set; }
-
-        [HelpOption]
-        public string GetUsage()
-        {
-            return HelpText.AutoBuild(this,
-              (HelpText current) => HelpText.DefaultParsingErrorsHandler(this, current));
-        }*/
 
         public Options()
         {
