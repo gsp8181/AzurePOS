@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SQLWorker
+namespace NoSQLWorker
 {
     public class OrderObject
     {
-        public OrderObject(string customerId, string sku, DateTime dateTime, decimal price)
+        public OrderObject(string customerId, string sku, DateTime dateTime, double price)
         {
             this.customerId = customerId;
             this.sku = sku;
@@ -23,6 +23,6 @@ namespace SQLWorker
         public string customerId;
         public string sku;
         public DateTime dateTime;
-        public decimal price;
+        public double price;
     }
 }

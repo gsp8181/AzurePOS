@@ -10,7 +10,7 @@ namespace AzurePOS.Order
 {
     public class OrderObject
     {
-        public OrderObject(string customerId, string sku, DateTime dateTime, decimal price)
+        public OrderObject(string customerId, string sku, DateTime dateTime, double price)
         {
             this.customerId = customerId;
             this.sku = sku;
@@ -23,6 +23,6 @@ namespace AzurePOS.Order
         public string customerId;
         public string sku;
         public DateTime dateTime;
-        public decimal price;
+        public double price;
     }
 }

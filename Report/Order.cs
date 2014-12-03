@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SQLWorker
+namespace Report
 {
     class Order : TableEntity
     {
@@ -20,6 +20,6 @@ namespace SQLWorker
         }
         public string sku { get; set; }
         public DateTime dateTime { get; set; }
-        public decimal price { get; set; }
+        public double price { get; set; }
     }
 }

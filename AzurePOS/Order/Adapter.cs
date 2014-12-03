@@ -16,7 +16,7 @@ namespace AzurePOS.Order
             return "order list";
         }
 
-        public static string Register(string customerId, string sku, DateTime dateTime, decimal price)
+        public static string Register(string customerId, string sku, DateTime dateTime, double price)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse((string)Settings.Default["StorageConnectionString"]);
 

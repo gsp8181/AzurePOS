@@ -11,7 +11,7 @@ using Microsoft.WindowsAzure.Storage.Table;
 using System.Configuration;
 
 
-namespace SQLWorker
+namespace NoSQLWorker
 {
     public class Functions
     {

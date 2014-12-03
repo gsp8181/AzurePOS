@@ -1,0 +1,13 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Report.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="StorageConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;DefaultEndpointsProtocol=https;AccountName=gsp8181;AccountKey=usUKpvPbpyORRyAzxnBQuOg3Izds4MlYRVyJiy/iYocpf9OJ84dzOV1xCQh2sIi/P7kRipZsw+G8sR8OAJcCig==&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">DefaultEndpointsProtocol=https;AccountName=gsp8181;AccountKey=usUKpvPbpyORRyAzxnBQuOg3Izds4MlYRVyJiy/iYocpf9OJ84dzOV1xCQh2sIi/P7kRipZsw+G8sR8OAJcCig==</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

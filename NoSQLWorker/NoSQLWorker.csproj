@@ -7,8 +7,8 @@
     <ProjectGuid>{CCFE7747-3E39-493B-B214-61BCF1A123C4}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SQLWorker</RootNamespace>
-    <AssemblyName>SQLWorker</AssemblyName>
+    <RootNamespace>NoSQLWorker</RootNamespace>
+    <AssemblyName>NoSQLWorker</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

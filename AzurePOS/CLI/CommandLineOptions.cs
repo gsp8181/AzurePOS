@@ -75,7 +75,7 @@ namespace AzurePOS.CLI
         public string time { get; set; } 
 
         [Option('p', "price", HelpText = "Price (omitting currency code)", Required = true)] //TODO: really omit currency code?
-        public decimal price { get; set; }
+        public double price { get; set; }
     }
 
     class LocationSubOptions
