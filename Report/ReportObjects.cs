@@ -12,7 +12,7 @@ namespace Report
 {
     static class ReportObjects
     {
-        public static double totalOrdersFromCountry(string country)
+        public static double TotalOrdersFromCountry(string country)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse((string)Settings.Default["StorageConnectionString"]);
 
@@ -39,11 +39,11 @@ namespace Report
                         select order;
 
             double ou = query.Sum(qu => qu.price);
-            
+
             return ou;
         }
 
-        public static double meanOrdersFromCountry(string country)
+        public static double MeanOrdersFromCountry(string country)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse((string)Settings.Default["StorageConnectionString"]);
 
@@ -69,9 +69,16 @@ namespace Report
                         join customer in customerList on order.PartitionKey equals customer.RowKey
                         select order;
 
-            double ou = query.Average(qu => qu.price);
+            if (query.Count() > 0)
+            {
+                double ou = query.Average(qu => qu.price);
 
-            return ou;
+                return ou;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
 
