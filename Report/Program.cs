@@ -13,6 +13,7 @@ namespace Report
             if (args.Length != 1)
             {
                 Console.WriteLine("Run this program with Reports.exe <Country Code>");
+                Console.WriteLine(@"If deployed as an Azure OnDemand WebJob, invoke with POST https://<site name>.scm.azurewebsites.net/api/triggeredwebjobs/Report/run?arguments=<country code>");
                 Environment.Exit(0);
             }
             string country = args[0];
