@@ -41,7 +41,7 @@ namespace NoSQLWorker
                 table.Execute(insertOperation);
             }
 
-            log.WriteLine(message);
+            //log.WriteLine(message);
         }
 
         // This function will get triggered/executed when a new message is written 
@@ -64,7 +64,7 @@ namespace NoSQLWorker
 
             table.Execute(insertOperation);
 
-            log.WriteLine(message);
+            //log.WriteLine(message);
         }
     }
 }

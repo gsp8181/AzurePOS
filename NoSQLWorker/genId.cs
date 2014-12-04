@@ -35,7 +35,14 @@ namespace NoSQLWorker
             {
                 var leaseId = GetLease(blob, 20);
                 string text = blob.DownloadText(null, AccessCondition.GenerateLeaseCondition(leaseId));
-                id = Int32.Parse(text) + 1;
+                if (String.IsNullOrEmpty(text))
+                {
+                    id = 1;
+                } else 
+                {
+                    id = Int32.Parse(text) + 1;
+                }
+                
                 blob.UploadText(id.ToString(), null, AccessCondition.GenerateLeaseCondition(leaseId));
                 blob.ReleaseLease(AccessCondition.GenerateLeaseCondition(leaseId));
             }
@@ -52,7 +59,14 @@ namespace NoSQLWorker
                 {
                     var leaseId = GetLease(blob, 20);
                     string text = blob.DownloadText(null, AccessCondition.GenerateLeaseCondition(leaseId));
-                    id = Int32.Parse(text) + 1;
+                    if (String.IsNullOrEmpty(text))
+                    {
+                        id = 1;
+                    }
+                    else
+                    {
+                        id = Int32.Parse(text) + 1;
+                    }
                     blob.UploadText(id.ToString(), null, AccessCondition.GenerateLeaseCondition(leaseId));
                     blob.ReleaseLease(AccessCondition.GenerateLeaseCondition(leaseId));
                 }

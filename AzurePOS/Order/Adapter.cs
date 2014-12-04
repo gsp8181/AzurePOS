@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace AzurePOS.Order
@@ -32,7 +33,7 @@ namespace AzurePOS.Order
                 return output;
             } else
             {
-                return ("No customer records found");
+                return ("No order records found");
             }
         }
 
@@ -53,7 +54,9 @@ namespace AzurePOS.Order
             CloudQueueMessage cm = new CloudQueueMessage(order);
 
             queue.AddMessage(cm);
-            return "Added " + order;
+            string orderStr = order.ToString();
+            orderStr = Regex.Replace(orderStr,@"\\/Date\(\d+\)\\/",dateTime.ToString("dd/MM/yyyy HH:mm"));
+            return "Added " + orderStr;
         }
     }
 }
