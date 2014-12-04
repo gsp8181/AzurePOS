@@ -17,7 +17,28 @@ namespace SQLWorker
         // on an Azure Queue called order.
         public static void ProcessOrderQueueMessage([QueueTrigger("order")] string message, TextWriter log)
         {
-            log.WriteLine(message);
+            SqlConnectionStringBuilder csBuilder;
+            csBuilder = new SqlConnectionStringBuilder(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
+            SqlConnection conn = new SqlConnection(csBuilder.ToString());
+            conn.Open();
+
+            OrderObject o = Serialiser.deserialiseO(message);
+
+            SqlParameter CustomerId = new SqlParameter("@CustomerID", SqlDbType.NVarChar, 50) { Value = o.customerId };
+            SqlParameter SKU = new SqlParameter("@SKU", SqlDbType.NVarChar, 25) { Value = o.sku };
+            SqlParameter OrderDateTime = new SqlParameter("@OrderDateTime", SqlDbType.DateTime2, 7) {Value = o.dateTime};
+            SqlParameter Price = new SqlParameter("@Price", SqlDbType.Money) { Value = o.price };
+
+            SqlCommand insertCommand = new SqlCommand("INSERT INTO OrderT (CustomerID, SKU, OrderDateTime, Price) VALUES (@CustomerID, @SKU, @OrderDateTime, @Price)", conn);
+            insertCommand.Parameters.Add(CustomerId);
+            insertCommand.Parameters.Add(SKU);
+            insertCommand.Parameters.Add(OrderDateTime);
+            insertCommand.Parameters.Add(Price);
+
+            insertCommand.ExecuteNonQuery();
+
+            conn.Close();
         }
 
         public static void ProcessCustomerQueueMessage([QueueTrigger("customer")] string message, TextWriter log)
