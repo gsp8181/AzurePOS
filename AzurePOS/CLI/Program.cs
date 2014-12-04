@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using CommandLine;
 using CommandLine.Text;
 using System.Globalization;
+using AzurePOS.Offline;
 
 namespace AzurePOS.CLI
 {
@@ -17,6 +18,7 @@ namespace AzurePOS.CLI
         [STAThread]
         public static void Main(string[] args)
         {
+            Resend.ResendMessage();
             string invokedVerb = "";
             object invokedVerbInstance = null;
 

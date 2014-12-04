@@ -1,4 +1,5 @@
-﻿using AzurePOS.Properties;
+﻿using AzurePOS.Offline;
+using AzurePOS.Properties;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure.Storage.Table;
@@ -45,15 +46,21 @@ namespace AzurePOS.Order
 
             CloudQueue queue = queueClient.GetQueueReference("order");
 
-            queue.CreateIfNotExists();
-
             OrderObject OrderObj = new OrderObject(customerId,sku,dateTime, price);
 
             string order = Serialiser.Serialiser.serialise(OrderObj);
 
             CloudQueueMessage cm = new CloudQueueMessage(order);
 
-            queue.AddMessage(cm);
+            try
+            {
+                queue.CreateIfNotExists();
+                queue.AddMessage(cm);
+            } catch (StorageException)
+            {
+                Resend.ResendMessage(order, "order");
+            }
+            
             string orderStr = order.ToString();
             orderStr = Regex.Replace(orderStr,@"\\/Date\(\d+\)\\/",dateTime.ToString("dd/MM/yyyy HH:mm"));
             return "Added " + orderStr;

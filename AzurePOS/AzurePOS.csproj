@@ -30,6 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -83,6 +84,7 @@
     <Compile Include="Customer\Customer.cs" />
     <Compile Include="Customer\CustomerObject.cs" />
     <Compile Include="Location\Location.cs" />
+    <Compile Include="Offline\Resend.cs" />
     <Compile Include="Order\Adapter.cs" />
     <Compile Include="Order\Order.cs" />
     <Compile Include="Order\OrderObject.cs" />

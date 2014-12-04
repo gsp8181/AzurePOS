@@ -10,6 +10,7 @@ using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure;
 using AzurePOS.Properties;
 using Microsoft.WindowsAzure.Storage.Table;
+using AzurePOS.Offline;
 
 namespace AzurePOS.Customer
 {
@@ -48,15 +49,21 @@ namespace AzurePOS.Customer
 
             CloudQueue queue = queueClient.GetQueueReference("customer");
 
-            queue.CreateIfNotExists();
-
             CustomerObject CustomerObj = new CustomerObject(name, country);
 
             string customer = Serialiser.Serialiser.serialise(CustomerObj);
 
             CloudQueueMessage cm = new CloudQueueMessage(customer);
 
-            queue.AddMessage(cm);
+            try
+            {
+                queue.CreateIfNotExists();
+                queue.AddMessage(cm);
+            }
+            catch (StorageException)
+            {
+                Resend.ResendMessage(customer, "customer");
+            }
             return "Added " + customer;
         }
 

@@ -67,5 +67,41 @@ namespace AzurePOS.Properties {
                 return ((string)(this["DevStorageConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StoredQueue {
+            get {
+                return ((string)(this["StoredQueue"]));
+            }
+            set {
+                this["StoredQueue"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string StoredMessage {
+            get {
+                return ((string)(this["StoredMessage"]));
+            }
+            set {
+                this["StoredMessage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Stored {
+            get {
+                return ((bool)(this["Stored"]));
+            }
+            set {
+                this["Stored"] = value;
+            }
+        }
     }
 }
