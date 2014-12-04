@@ -36,6 +36,7 @@ namespace AzurePOS.Location
             get { return (City != "" && Country != "");}
         }
 
+#pragma warning disable 0114
         internal static string ToString()
         {
             string output = "";

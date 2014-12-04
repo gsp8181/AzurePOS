@@ -99,7 +99,7 @@ namespace NoSQLWorker
                     //}
                     //else
                    // {
-                        System.Threading.Thread.Sleep(20); //TODO: random
+                        System.Threading.Thread.Sleep(20);
                     //}
 
                 }

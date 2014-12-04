@@ -74,7 +74,7 @@ namespace AzurePOS.CLI
         [Option('t', "time", HelpText = "Time of the order (HH:mm)")]
         public string time { get; set; } 
 
-        [Option('p', "price", HelpText = "Price (omitting currency code)", Required = true)] //TODO: really omit currency code?
+        [Option('p', "price", HelpText = "Price (omitting currency code)", Required = true)]
         public double price { get; set; }
     }
 

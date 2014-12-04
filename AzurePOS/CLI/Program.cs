@@ -49,7 +49,7 @@ namespace AzurePOS.CLI
                 }
                 else
                 {
-                    Console.WriteLine(HelpText.AutoBuild(options, invokedVerb)); //TODO: put this away 
+                    Console.WriteLine(HelpText.AutoBuild(options, invokedVerb));
                 }
 
             }
@@ -83,7 +83,7 @@ namespace AzurePOS.CLI
                     }
                     else
                     {
-                        Console.WriteLine(HelpText.AutoBuild(options, invokedVerb)); //TODO: put this away
+                        Console.WriteLine(HelpText.AutoBuild(options, invokedVerb));
                     }
                 }
 
@@ -96,7 +96,7 @@ namespace AzurePOS.CLI
             else if (invokedVerb == "register")
             {
                 RegisterSubOptions commitSubOptions = (RegisterSubOptions)invokedVerbInstance;
-                string result = Customer.Adapter.Register(commitSubOptions.name, Location.Location.Country); //TODO: country necessary or from settings
+                string result = Customer.Adapter.Register(commitSubOptions.name, Location.Location.Country);
                 Console.WriteLine(result);
             }
             else if (invokedVerb == "order")
@@ -123,12 +123,12 @@ namespace AzurePOS.CLI
 
                 if (write)
                 {
-                    string result = Order.Adapter.Register(commitSubOptions.customerId, commitSubOptions.sku, dt, commitSubOptions.price); //TODO: country necessary or from settings
+                    string result = Order.Adapter.Register(commitSubOptions.customerId, commitSubOptions.sku, dt, commitSubOptions.price);
                     Console.WriteLine(result);
                 }
                 else
                 {
-                    Console.WriteLine(HelpText.AutoBuild(options, invokedVerb)); //TODO: put this away
+                    Console.WriteLine(HelpText.AutoBuild(options, invokedVerb));
                 }
 
             }
