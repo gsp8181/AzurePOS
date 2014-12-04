@@ -18,7 +18,7 @@ namespace GenRandom
             }
             for(int i=0;i<10000;i++)
             {
-                int customerid = 1;
+                int customerid = random.Next(1,1000);
                 string sku = "AZP-TEST-" + random.Next(10).ToString() + random.Next(10).ToString() + random.Next(10).ToString();// + random.Next(10).ToString();
                 DateTime dt = DateTime.Today;
                 dt = dt.AddMinutes(- random.Next(525949)); //525949 is the number of seconds in a year

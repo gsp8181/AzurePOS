@@ -18,13 +18,28 @@ namespace Report
 
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
-            CloudTable table = tableClient.GetTableReference("order");
+            CloudTable orderTable = tableClient.GetTableReference("order");
 
-            TableQuery<Order> query = new TableQuery<Order>();
+            TableQuery<Order> orderQuery = new TableQuery<Order>();
             //TableQuery<Order> query = new TableQuery<Order>().Sum(qu => qu.price);
                 //.Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country))
-            double ou = table.ExecuteQuery(query).Sum(qu => qu.price);
+            IEnumerable<Order> orderQueryResult = orderTable.ExecuteQuery(orderQuery);
+            List<Order> orderList = orderQueryResult.ToList();
 
+            CloudTable customerTable = tableClient.GetTableReference("customer");
+
+            TableQuery<Customer> customerQuery = new TableQuery<Customer>()
+            .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country));
+
+            IEnumerable<Customer> customerQueryResult = customerTable.ExecuteQuery(customerQuery);
+            List<Customer> customerList = customerQueryResult.ToList();
+            
+            var query = from order in orderList
+                        join customer in customerList on order.PartitionKey equals customer.RowKey
+                        select order;
+
+            double ou = query.Sum(qu => qu.price);
+            
             return ou;
         }
 
@@ -34,13 +49,27 @@ namespace Report
 
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
-            CloudTable table = tableClient.GetTableReference("order");
+            CloudTable orderTable = tableClient.GetTableReference("order");
 
-            TableQuery<Order> query = new TableQuery<Order>();
+            TableQuery<Order> orderQuery = new TableQuery<Order>();
+            //TableQuery<Order> query = new TableQuery<Order>().Sum(qu => qu.price);
+            //.Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country))
+            IEnumerable<Order> orderQueryResult = orderTable.ExecuteQuery(orderQuery);
+            List<Order> orderList = orderQueryResult.ToList();
 
-            IEnumerable<Order> oex = table.ExecuteQuery(query);
+            CloudTable customerTable = tableClient.GetTableReference("customer");
 
-            double ou = table.ExecuteQuery(query).Average(qu => qu.price);
+            TableQuery<Customer> customerQuery = new TableQuery<Customer>()
+            .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country));
+
+            IEnumerable<Customer> customerQueryResult = customerTable.ExecuteQuery(customerQuery);
+            List<Customer> customerList = customerQueryResult.ToList();
+
+            var query = from order in orderList
+                        join customer in customerList on order.PartitionKey equals customer.RowKey
+                        select order;
+
+            double ou = query.Average(qu => qu.price);
 
             return ou;
         }

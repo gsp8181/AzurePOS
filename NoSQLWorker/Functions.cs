@@ -9,6 +9,7 @@ using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 using System.Configuration;
+using System.Net;
 
 
 namespace NoSQLWorker
@@ -27,12 +28,18 @@ namespace NoSQLWorker
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
             CloudTable table = tableClient.GetTableReference("customer");
             bool createdTable = table.CreateIfNotExists();
-            Customer ce = new Customer(Guid.NewGuid().ToString(), co.country);
+            Customer ce = new Customer(genId.generate("customer").ToString(), co.country);
             ce.name = co.name;
 
             TableOperation insertOperation = TableOperation.Insert(ce);
 
-            table.Execute(insertOperation);
+            try
+            {
+                table.Execute(insertOperation);
+            } catch (WebException)
+            {
+                table.Execute(insertOperation);
+            }
 
             log.WriteLine(message);
         }
@@ -46,8 +53,8 @@ namespace NoSQLWorker
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ConnectionString);
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
             CloudTable table = tableClient.GetTableReference("order");
-            bool createdTable = table.CreateIfNotExists();
-            Order oe = new Order(Guid.NewGuid().ToString(), oo.customerId.ToString());
+                table.CreateIfNotExists();
+            Order oe = new Order(genId.generate("order").ToString(), oo.customerId.ToString());
             oe.sku = oo.sku;
             oe.dateTime = oo.dateTime;
             oe.price = oo.price;

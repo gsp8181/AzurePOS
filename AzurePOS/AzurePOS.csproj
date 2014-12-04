@@ -81,9 +81,11 @@
     <Compile Include="CLI\Program.cs" />
     <Compile Include="Customer\Adapter.cs" />
     <Compile Include="Customer\Customer.cs" />
+    <Compile Include="Customer\CustomerObject.cs" />
     <Compile Include="Location\Location.cs" />
     <Compile Include="Order\Adapter.cs" />
     <Compile Include="Order\Order.cs" />
+    <Compile Include="Order\OrderObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialiser\Serialiser.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

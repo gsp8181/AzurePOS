@@ -9,6 +9,7 @@ using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.Queue;
 using Microsoft.WindowsAzure;
 using AzurePOS.Properties;
+using Microsoft.WindowsAzure.Storage.Table;
 
 namespace AzurePOS.Customer
 {
@@ -16,7 +17,27 @@ namespace AzurePOS.Customer
     {
         public static string GetList()
         {
-            return "customer list";
+            CloudStorageAccount storageAccount = CloudStorageAccount.Parse((string)Settings.Default["StorageConnectionString"]);
+
+            CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
+
+            CloudTable table = tableClient.GetTableReference("customer");
+
+            if (table.Exists())
+            {
+                TableQuery<Customer> query = new TableQuery<Customer>();
+                string output = "Customer Table";
+                IEnumerable<Customer> executedQuery = table.ExecuteQuery(query).OrderBy(k => int.Parse(k.RowKey));
+                foreach (Customer c in executedQuery)
+                {
+                    output += ("\n" + c.RowKey + ": " + c.name + " (" + c.PartitionKey + ")");
+                }
+                return output;
+            }
+            else
+            {
+                return ("No order records found");
+            }
         }
 
         public static string Register(string name, string country)
