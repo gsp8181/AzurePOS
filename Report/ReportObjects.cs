@@ -92,7 +92,7 @@ namespace Report
 
             TableQuery<Order> query = new TableQuery<Order>().Where(TableQuery.GenerateFilterConditionForDate("dateTime", QueryComparisons.GreaterThanOrEqual, DateTime.Today.AddDays(-7)));
 
-            IEnumerable<Order> oex = table.ExecuteQuery(query).OrderBy(k => int.Parse(k.RowKey));
+            IEnumerable<Order> oex = table.ExecuteQuery(query).OrderBy(k => int.Parse(k.RowKey)); //TODO: doesn't work
 
             //double ou = table.ExecuteQuery(query);
 
