@@ -54,7 +54,8 @@ namespace NoSQLWorker
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
             CloudTable table = tableClient.GetTableReference("order");
                 table.CreateIfNotExists();
-            Order oe = new Order(genId.generate("order").ToString(), oo.customerId.ToString());
+            string id = genId.generate("order").ToString();
+            Order oe = new Order(id, oo.customerId.ToString());
             oe.sku = oo.sku;
             oe.dateTime = oo.dateTime;
             oe.price = oo.price;
@@ -63,6 +64,15 @@ namespace NoSQLWorker
             TableOperation insertOperation = TableOperation.Insert(oe);
 
             table.Execute(insertOperation);
+
+            CloudTable ocTable = tableClient.GetTableReference("ordercountry");
+            ocTable.CreateIfNotExists();
+
+            OrderCountry oc = new OrderCountry(id, "GB") { customerId = oo.customerId.ToString(), sku = oo.sku, dateTime = oo.dateTime, price = oo.price }; //TODO: get country
+
+            TableOperation ocInsertOperation = TableOperation.Insert(oc);
+
+            ocTable.Execute(ocInsertOperation);
 
             //log.WriteLine(message);
         }

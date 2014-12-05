@@ -49,29 +49,15 @@ namespace Report
 
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
-            CloudTable orderTable = tableClient.GetTableReference("order");
+            CloudTable orderCountryTable = tableClient.GetTableReference("ordercountry");
 
-            TableQuery<Order> orderQuery = new TableQuery<Order>();
-            //TableQuery<Order> query = new TableQuery<Order>().Sum(qu => qu.price);
-            //.Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country))
-            IEnumerable<Order> orderQueryResult = orderTable.ExecuteQuery(orderQuery);
-            List<Order> orderList = orderQueryResult.ToList();
+            TableQuery<Order> orderQuery = new TableQuery<Order>().Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country));
+            var orderQueryResult = orderCountryTable.ExecuteQuery(orderQuery);
 
-            CloudTable customerTable = tableClient.GetTableReference("customer");
 
-            TableQuery<Customer> customerQuery = new TableQuery<Customer>()
-            .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country));
-
-            IEnumerable<Customer> customerQueryResult = customerTable.ExecuteQuery(customerQuery);
-            List<Customer> customerList = customerQueryResult.ToList();
-
-            var query = from order in orderList
-                        join customer in customerList on order.PartitionKey equals customer.RowKey
-                        select order;
-
-            if (query.Count() > 0)
+            if (orderQueryResult.Count() > 0)
             {
-                double ou = query.Average(qu => qu.price);
+                double ou = orderQueryResult.Average(qu => qu.price);
 
                 return ou;
             }
@@ -88,15 +74,17 @@ namespace Report
 
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
-            CloudTable table = tableClient.GetTableReference("order");
+            CloudTable orderCountryTable = tableClient.GetTableReference("ordercountry");
 
-            TableQuery<Order> query = new TableQuery<Order>().Where(TableQuery.GenerateFilterConditionForDate("dateTime", QueryComparisons.GreaterThanOrEqual, DateTime.Today.AddDays(-7)));
+            TableQuery<Order> orderQuery = new TableQuery<Order>()
+                .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country))
+                .Where(TableQuery.GenerateFilterConditionForDate("dateTime", QueryComparisons.GreaterThanOrEqual, DateTime.Today.AddDays(-7)));
+                //.OrderBy(k => int.Parse(k.RowKey));
 
-            IEnumerable<Order> oex = table.ExecuteQuery(query).OrderBy(k => int.Parse(k.RowKey)); //TODO: doesn't work
 
-            //double ou = table.ExecuteQuery(query);
+            var ou = orderCountryTable.ExecuteQuery(orderQuery);
 
-            List<Order> completedList = oex.ToList<Order>();
+            List<Order> completedList = ou.ToList<Order>();
             return completedList;
         }
     }

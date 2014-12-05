@@ -14,7 +14,9 @@ namespace NoSQLWorker
         // AzureWebJobsDashboard and AzureWebJobsStorage
         static void Main()
         {
-            var host = new JobHost();
+            JobHostConfiguration config = new JobHostConfiguration();
+            config.Queues.MaxDequeueCount = 1; //Makes ALOP (vs AMOP) queue handling by not allowing retries if there is a failure
+            var host = new JobHost(config);
             // The following code ensures that the WebJob will be running continuously
             host.RunAndBlock();
         }

@@ -78,6 +78,7 @@
     <Compile Include="CustomerJSON.cs" />
     <Compile Include="genId.cs" />
     <Compile Include="Order.cs" />
+    <Compile Include="OrderCountry.cs" />
     <Compile Include="OrderJSON.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Functions.cs" />
