@@ -21,8 +21,7 @@ namespace Report
             CloudTable orderTable = tableClient.GetTableReference("order");
 
             TableQuery<Order> orderQuery = new TableQuery<Order>();
-            //TableQuery<Order> query = new TableQuery<Order>().Sum(qu => qu.price);
-                //.Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country))
+
             IEnumerable<Order> orderQueryResult = orderTable.ExecuteQuery(orderQuery);
             List<Order> orderList = orderQueryResult.ToList();
 
