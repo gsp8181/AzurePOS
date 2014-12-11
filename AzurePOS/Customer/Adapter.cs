@@ -14,8 +14,15 @@ using AzurePOS.Offline;
 
 namespace AzurePOS.Customer
 {
+    /// <summary>
+    /// Contains methods for sending customers to the azure queue and getting the table of customers
+    /// </summary>
     static class Adapter
     {
+        /// <summary>
+        /// Retrieves a formatted list of customers
+        /// </summary>
+        /// <returns>The formatted string of customers</returns>
         public static string GetList()
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse((string)Settings.Default["StorageConnectionString"]);
@@ -41,6 +48,12 @@ namespace AzurePOS.Customer
             }
         }
 
+        /// <summary>
+        /// Registers a new customer
+        /// </summary>
+        /// <param name="name">The name of the customer</param>
+        /// <param name="country">The two letter country code</param>
+        /// <returns>A string indicating the registration completed</returns>
         public static string Register(string name, string country)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse((string)Settings.Default["StorageConnectionString"]);
@@ -67,6 +80,11 @@ namespace AzurePOS.Customer
             return "Added " + customer;
         }
 
+        /// <summary>
+        /// Registers a customer by name only with the default country
+        /// </summary>
+        /// <param name="name">The name of the customer</param>
+        /// <returns>A formatted string indicating addition took place successfully</returns>
         public static string Register(string name)
         {
             string country = Location.Location.Country;

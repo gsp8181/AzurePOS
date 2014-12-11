@@ -8,6 +8,10 @@ namespace Report
 {
     class Program
     {
+        /// <summary>
+        /// Generates a series of reports when invoked with a country code about the specified country
+        /// </summary>
+        /// <param name="args">The two letter country in position 0</param>
         static void Main(string[] args)
         {
             if (args.Length != 1)

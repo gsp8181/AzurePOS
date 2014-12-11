@@ -4,6 +4,10 @@ namespace GenRandom
 {
     class Program
     {
+        /// <summary>
+        /// Generates 1000 random customers and 10000 random orders and feeds them to the AzurePOS program for addition to the queue
+        /// </summary>
+        /// <param name="args">Not used at this time</param>
         static void Main(string[] args)
         {
             Random random = new Random(Guid.NewGuid().GetHashCode());

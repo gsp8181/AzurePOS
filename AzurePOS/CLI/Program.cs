@@ -14,6 +14,7 @@ namespace AzurePOS.CLI
     {
         /// <summary>
         /// The main entry point for the application.
+        /// Parses the verb and command option and passes the variables to the appropriate command class
         /// </summary>
         [STAThread]
         public static void Main(string[] args)

@@ -11,10 +11,17 @@ using System.Data;
 
 namespace SQLWorker
 {
+    /// <summary>
+    /// Holds functions for async recieving of messages from the azure queues to be processed and sent to the relavent SQL tables
+    /// </summary>
     public class Functions
     {
-        // This function will get triggered/executed when a new message is written 
-        // on an Azure Queue called order.
+        /// <summary>
+        /// This function will get triggered/executed when a new message is written on an Azure Queue called order. 
+        /// Processes the message and adds the new customer to the order SQL table
+        /// </summary>
+        /// <param name="message">The JSON string of the new order</param>
+        /// <param name="log">The log for writing information messages</param>
         public static void ProcessOrderQueueMessage([QueueTrigger("order")] string message, TextWriter log)
         {
             SqlConnectionStringBuilder csBuilder;
@@ -27,7 +34,7 @@ namespace SQLWorker
 
             SqlParameter CustomerId = new SqlParameter("@CustomerID", SqlDbType.NVarChar, 50) { Value = o.customerId };
             SqlParameter SKU = new SqlParameter("@SKU", SqlDbType.NVarChar, 25) { Value = o.sku };
-            SqlParameter OrderDateTime = new SqlParameter("@OrderDateTime", SqlDbType.DateTime2, 7) {Value = o.dateTime};
+            SqlParameter OrderDateTime = new SqlParameter("@OrderDateTime", SqlDbType.DateTime2, 7) { Value = o.dateTime };
             SqlParameter Price = new SqlParameter("@Price", SqlDbType.Money) { Value = o.price };
 
             SqlCommand insertCommand = new SqlCommand("INSERT INTO OrderT (CustomerID, SKU, OrderDateTime, Price) VALUES (@CustomerID, @SKU, @OrderDateTime, @Price)", conn);
@@ -41,6 +48,12 @@ namespace SQLWorker
             conn.Close();
         }
 
+        /// <summary>
+        /// This function will get triggered/executed when a new message is written on an Azure Queue called customer. 
+        /// Processes the message and adds the new customer to the customer SQL table
+        /// </summary>
+        /// <param name="message">The JSON string of the new customer</param>
+        /// <param name="log">The log for writing information messages</param>
         public static void ProcessCustomerQueueMessage([QueueTrigger("customer")] string message, TextWriter log)
         {
             SqlConnectionStringBuilder csBuilder;

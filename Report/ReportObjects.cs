@@ -10,8 +10,17 @@ using Report.Properties;
 
 namespace Report
 {
+    /// <summary>
+    /// Contains a series of methods that produce string formatted reports for specified country codes
+    /// </summary>
     static class ReportObjects
     {
+        /// <summary>
+        /// Retrieves the total amount of orders from a specified country.
+        /// Uses a deprecated JOIN method to demonstrate understanding
+        /// </summary>
+        /// <param name="country">The two letter country code</param>
+        /// <returns>The resulting value</returns>
         public static double TotalOrdersFromCountry(string country)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse((string)Settings.Default["StorageConnectionString"]);
@@ -32,7 +41,7 @@ namespace Report
 
             IEnumerable<Customer> customerQueryResult = customerTable.ExecuteQuery(customerQuery);
             List<Customer> customerList = customerQueryResult.ToList();
-            
+
             var query = from order in orderList
                         join customer in customerList on order.PartitionKey equals customer.RowKey
                         select order;
@@ -42,6 +51,12 @@ namespace Report
             return ou;
         }
 
+        /// <summary>
+        /// Retrieves the mean amount of orders for a specified country. 
+        /// Uses the new OrderCountry table for more efficient processing
+        /// </summary>
+        /// <param name="country">The two letter country code</param>
+        /// <returns>The resulting value</returns>
         public static double MeanOrdersFromCountry(string country)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse((string)Settings.Default["StorageConnectionString"]);
@@ -66,7 +81,11 @@ namespace Report
             }
         }
 
-
+        /// <summary>
+        /// Retrieves all of the orders made from the last seven days from a given country
+        /// </summary>
+        /// <param name="country">The two letter country code</param>
+        /// <returns>A list of orders made in the past seven days from the given country</returns>
         public static List<Order> OrdersFromLastSevenDays(string country)
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse((string)Settings.Default["StorageConnectionString"]);
@@ -78,7 +97,6 @@ namespace Report
             TableQuery<Order> orderQuery = new TableQuery<Order>()
                 .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, country))
                 .Where(TableQuery.GenerateFilterConditionForDate("dateTime", QueryComparisons.GreaterThanOrEqual, DateTime.Today.AddDays(-7)));
-                //.OrderBy(k => int.Parse(k.RowKey));
 
 
             var ou = orderCountryTable.ExecuteQuery(orderQuery);

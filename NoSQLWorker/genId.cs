@@ -38,11 +38,12 @@ namespace NoSQLWorker
                 if (String.IsNullOrEmpty(text))
                 {
                     id = 1;
-                } else 
+                }
+                else
                 {
                     id = Int32.Parse(text) + 1;
                 }
-                
+
                 blob.UploadText(id.ToString(), null, AccessCondition.GenerateLeaseCondition(leaseId));
                 blob.ReleaseLease(AccessCondition.GenerateLeaseCondition(leaseId));
             }
@@ -55,7 +56,8 @@ namespace NoSQLWorker
                     id = 1;
                     blob.UploadText(id.ToString(), null, AccessCondition.GenerateLeaseCondition(leaseId));
                     blob.ReleaseLease(AccessCondition.GenerateLeaseCondition(leaseId));
-                } catch (StorageException)
+                }
+                catch (StorageException)
                 {
                     var leaseId = GetLease(blob, 20);
                     string text = blob.DownloadText(null, AccessCondition.GenerateLeaseCondition(leaseId));
@@ -98,8 +100,8 @@ namespace NoSQLWorker
                     //    throw;
                     //}
                     //else
-                   // {
-                        System.Threading.Thread.Sleep(20);
+                    // {
+                    System.Threading.Thread.Sleep(20);
                     //}
 
                 }
@@ -107,24 +109,24 @@ namespace NoSQLWorker
             return leaseId;
         }
         public static bool Exists(CloudBlockBlob blob)
+        {
+            try
             {
-                try
+                blob.FetchAttributes();
+                return true;
+            }
+            catch (StorageException e)
+            {
+                if (e.Message.Contains("(404)"))
                 {
-                    blob.FetchAttributes();
-                    return true;
+                    return false;
                 }
-                catch (StorageException e)
+                else
                 {
-                    if (e.Message.Contains("(404)"))
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
-           
+            }
+
         }
     }
 }

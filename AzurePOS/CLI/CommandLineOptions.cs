@@ -8,13 +8,17 @@ using CommandLine.Text;
 
 namespace AzurePOS.CLI
 {
+    /// <summary>
+    /// Contains the initial verb menu for the CLI interface
+    /// </summary>
     class Options
     {
 
-        public Options()
-        {
-           // ListVerb = new ListSubOptions { Patch = true };
-        }
+        /// <summary>
+        /// Required for verb option
+        /// </summary>
+        public Options() { }
+
         [VerbOption("list", HelpText = "List a specified database (customer|order).")]
         public ListSubOptions ListVerb { get; set; }
 
@@ -35,6 +39,9 @@ namespace AzurePOS.CLI
 
     }
 
+    /// <summary>
+    /// Contains the options for listing
+    /// </summary>
     class ListSubOptions
     {
 
@@ -51,42 +58,49 @@ namespace AzurePOS.CLI
 
     }
 
+    /// <summary>
+    /// Contains the options for registering a new customer
+    /// </summary>
     class RegisterSubOptions
     {
-        [Option('n',"name", HelpText = "Name of customer", Required=true)]
+        [Option('n', "name", HelpText = "Name of customer", Required = true)]
         public string name { get; set; }
 
-        //[Option('c',"country", HelpText = "Country of customer", Required=true)]
-        //public string country { get; set; } //TODO: should this not just be got from Location?
     }
 
+    /// <summary>
+    /// Contains the options for registering a new order
+    /// </summary>
     class OrderSubOptions
     {
-        [Option('i',"id", HelpText = "Customer ID", Required = true)]
+        [Option('i', "id", HelpText = "Customer ID", Required = true)]
         public string customerId { get; set; }
 
-        [Option('s',"SKU", HelpText = "Stock Keeping Unit (SKU) code", Required = true)]
+        [Option('s', "SKU", HelpText = "Stock Keeping Unit (SKU) code", Required = true)]
         public string sku { get; set; }
 
         [Option('d', "date", HelpText = "Date and Time of the order (dd/MM/yyyy). A time is also required if date is set")]
         public string date { get; set; }
 
         [Option('t', "time", HelpText = "Time of the order (HH:mm)")]
-        public string time { get; set; } 
+        public string time { get; set; }
 
         [Option('p', "price", HelpText = "Price (omitting currency code)", Required = true)]
         public double price { get; set; }
     }
 
+    /// <summary>
+    /// Contains the options for registering a new location
+    /// </summary>
     class LocationSubOptions
     {
-        [Option("city", HelpText = "Enter a new city", MutuallyExclusiveSet="set")]
+        [Option("city", HelpText = "Enter a new city", MutuallyExclusiveSet = "set")]
         public string city { get; set; }
 
         [Option("country", HelpText = "Enter a new country code (eg GB)", MutuallyExclusiveSet = "set")]
         public string country { get; set; }
 
-        [Option('v',"view",HelpText="View the associated city and country of the instance",MutuallyExclusiveSet="get")]
+        [Option('v', "view", HelpText = "View the associated city and country of the instance", MutuallyExclusiveSet = "get")]
         public bool view { get; set; }
     }
 

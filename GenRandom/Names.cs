@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace GenRandom
 {
+    /// <summary>
+    /// Holds lists of common first and last names for random selection. 
+    /// This list has been shared with Computing Science students. 
+    /// Retrieved from various baby websites and from the Office for National Statistics
+    /// </summary>
     static class Names
     {
         public static string[] firstNames = { "Oliver", "Jack", "Charlie", "Harry", "Oscar", "Thomas", "Jacob", "Ethan", "Noah", "James", "William", "Joshua", "George", "Leo", "Max", "Henry", "Alfie", "Lucas", "Daniel", "Dylan", "Finley", "Alexander", "Freddie", "Isaac", "Samuel", "Joseph", "Archie", "Muhammad", "Benjamin", "Lewis", "Logan", "Matthew", "Sebastian", "Jake", "Edward", "Zachary", "Aidan", "Luke", "Mason", "Riley", "Ryan", "Elliott", "Toby", "Reuben", "Adam", "Theo", "Connor", "Nathan", "Jayden", "Liam", "Harrison", "Sam", "Michael", "Ollie", "Zac", "Arthur", "Luca", "Ben", "Finn", "Elijah", "Alex", "Tyler", "Jamie", "Blake", "Rhys", "David", "Caleb", "Callum", "Jackson", "Harvey", "Felix", "Jenson", "Jude", "Aaron", "Cameron", "Tommy", "Hugo", "Brody", "Evan", "Gabriel", "Dexter", "Austin", "Nicholas", "Seth", "Harley", "Owen", "Stanley", "Nathaniel", "Rowan", "Rory", "Teddy", "Jason", "Hayden", "Tristan", "Josh", "Jasper", "Bobby", "Frankie", "Tom", "Patrick", "Sophia", "Emily", "Lily", "Olivia", "Amelia", "Isla", "Isabella", "Ava", "Sophie", "Chloe", "Isabelle", "Ella", "Poppy", "Mia", "Evie", "Jessica", "Charlotte", "Grace", "Emma", "Alice", "Ruby", "Eva", "Freya", "Molly", "Scarlett", "Lucy", "Abigail", "Phoebe", "Nur", "Daisy", "Elizabeth", "Hannah", "Florence", "Ellie", "Maryam", "Erin", "Sienna", "Elsie", "Matilda", "Evelyn", "Maya", "Lola", "Bella", "Rosie", "Holly", "Millie", "Annabelle", "Jasmine", "Imogen", "Georgia", "Sarah", "Ivy", "Emilia", "Rose", "Eliza", "Layla", "Mila", "Anna", "Willow", "Amelie", "Maisie", "Summer", "Zara", "Katie", "Megan", "Amber", "Harriet", "Violet", "Madison", "Gracie", "Leah", "Aria", "Thea", "Lara", "Elsa", "Zoe", "Eleanor", "Kayla", "Esme", "Victoria", "Maria", "Iris", "Gabriella", "Lexi", "Harper", "Ariana", "Lacey", "Faith", "Alexis", "Robyn", "Skye", "Alyssa", "Amy", "Elena", "Bethany", "Rebecca", "Lottie", "Clara", "Niamh", "Naomi" };

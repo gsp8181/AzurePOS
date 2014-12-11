@@ -2,9 +2,15 @@
 
 namespace AzurePOS.Location
 {
+    /// <summary>
+    /// Holds and retrieves properties for the city and country of the current instance
+    /// </summary>
     static class Location
     {
 
+        /// <summary>
+        /// The current city
+        /// </summary>
         internal static string City
         {
             get
@@ -18,6 +24,9 @@ namespace AzurePOS.Location
             }
         }
 
+        /// <summary>
+        /// The current country in two letter format
+        /// </summary>
         internal static string Country
         {
             get
@@ -31,11 +40,18 @@ namespace AzurePOS.Location
             }
         }
 
+        /// <summary>
+        /// True if both the city and the country are set
+        /// </summary>
         internal static bool IsSet
         {
             get { return (City != "" && Country != "");}
         }
 
+        /// <summary>
+        /// Gets a string of the location information
+        /// </summary>
+        /// <returns>The formatted string</returns>
 #pragma warning disable 0114
         internal static string ToString()
         {

@@ -14,16 +14,23 @@ using System.Net;
 
 namespace NoSQLWorker
 {
+    /// <summary>
+    /// Holds functions for async recieving of messages from the azure queues to be processed and sent to the relavent tables
+    /// </summary>
     public class Functions
     {
-        // This function will get triggered/executed when a new message is written 
-        // on an Azure Queue called queue.
+
+        /// <summary>
+        /// This function will get triggered/executed when a new message is written on an Azure Queue called customer. 
+        /// Processes the message and adds the new customer to the customer table
+        /// </summary>
+        /// <param name="message">The JSON string of the new customer</param>
+        /// <param name="log">The log for writing information messages</param>
         public static void ProcessCustomerQueueMessage([QueueTrigger("customer")] string message, TextWriter log)
         {
             CustomerObject co = Serialiser.deserialiseC(message);
 
 
-            //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("AzureWebJobsStorage"));
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ConnectionString);
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
             CloudTable table = tableClient.GetTableReference("customer");
@@ -36,7 +43,8 @@ namespace NoSQLWorker
             try
             {
                 table.Execute(insertOperation);
-            } catch (WebException)
+            }
+            catch (WebException)
             {
                 table.Execute(insertOperation);
             }
@@ -44,8 +52,13 @@ namespace NoSQLWorker
             //log.WriteLine(message);
         }
 
-        // This function will get triggered/executed when a new message is written 
-        // on an Azure Queue called queue.
+        /// <summary>
+        /// This function will get triggered/executed when a new message is written on an Azure Queue called order. 
+        /// Processes the message and adds the new order to the orders table.
+        /// Also adds the order to a special link table called OrderCountry for reporting purposes
+        /// </summary>
+        /// <param name="message">The JSON string of the new order</param>
+        /// <param name="log">The log for writing information messages</param>
         public static void ProcessOrderQueueMessage([QueueTrigger("order")] string message, TextWriter log)
         {
             OrderObject oo = Serialiser.deserialiseO(message);
@@ -53,13 +66,12 @@ namespace NoSQLWorker
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.ConnectionStrings["AzureWebJobsStorage"].ConnectionString);
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
             CloudTable table = tableClient.GetTableReference("order");
-                table.CreateIfNotExists();
+            table.CreateIfNotExists();
             string id = genId.generate("order").ToString();
             Order oe = new Order(id, oo.customerId.ToString());
             oe.sku = oo.sku;
             oe.dateTime = oo.dateTime;
             oe.price = oo.price;
-            //ce.name = oe.name;
 
             TableOperation insertOperation = TableOperation.Insert(oe);
 
