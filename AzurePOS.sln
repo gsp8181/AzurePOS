@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQLWorker", "SQLWorker\SQLW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report", "Report\Report.csproj", "{0703B5A2-97DE-42B9-91BB-CD1AE6175DBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebJob", "WebJob\WebJob.csproj", "{8E48BA39-0452-4143-A984-80C7988C6952}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0703B5A2-97DE-42B9-91BB-CD1AE6175DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0703B5A2-97DE-42B9-91BB-CD1AE6175DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0703B5A2-97DE-42B9-91BB-CD1AE6175DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E48BA39-0452-4143-A984-80C7988C6952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E48BA39-0452-4143-A984-80C7988C6952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E48BA39-0452-4143-A984-80C7988C6952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E48BA39-0452-4143-A984-80C7988C6952}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
